@@ -25,3 +25,6 @@ class RequestLeave(Resource):
 
     def post(self):
         return {'msg': 'leave successfully requested'}, 201
+
+    def get(self):
+        return {'data': 'all leaves'}, 200
