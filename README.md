@@ -19,5 +19,7 @@ Email should be sent automatically to admin
 * Backend - Python (Flask)
 * Database - PostgreSQL
 * Frontend - Angular
+* Testing - pytest
+* CI - Travis
 
 
