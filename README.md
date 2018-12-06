@@ -14,6 +14,19 @@ Email should be sent automatically to admin
 * [ ] **admin** - see the leave applications that are submitted for approval
 * [ ] **admin** - approve/reject the leave applications. Email should be sent automatically to user
 
+## Routes
+### Auth
+* [ ] `POST /auth/signup` - create a user account
+* [ ] `POST /auth/login` - login user
+
+### Leave Management
+* [ ] `POST /leaves` - post a leave request
+* [ ] `GET /leaves` - fetch all leave requests
+* [ ] `GET /leaves/uid` - fetch specific user leave requests
+* [ ] `GET /users/uid/leaves` - fetch user leave history
+* [ ] `PATCH /leaves/leaveid/withdraw` - withdraw leave request
+* [ ] `PATCH /leaves/leaveid/cancel` - cancel leave request
+
 ## Tech Stack
 
 * Backend - Python (Flask)
