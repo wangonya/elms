@@ -7,9 +7,7 @@ branches:
   only:
   - master
   - develop
-services:
-  - postgresql
-before_script:
-  - psql -c 'create database elms;' -U postgres
+ActiveRecord::Base.establish_connection :adapter => 'sqlite3',
+                                        :database => ':memory:'
 script:
   - pytest
