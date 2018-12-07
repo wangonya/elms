@@ -60,3 +60,13 @@ def test_withdraw_leave(client):
 def test_cancel_leave(client):
     res = patch_json(client, '/leaves/<int:l_id>/cancel', {"l_status": "cancel requested"})
     assert res.status_code == 200 or 404
+
+
+def test_register(client):
+    res = post_json(client, '/register', {"uid": "test", "password": "testpass"})
+    assert res.status_code == 201 or 400
+
+
+def test_login(client):
+    res = post_json(client, '/login', {"uid": "test", "password": "test"})
+    assert res.status_code == 200 or 401
