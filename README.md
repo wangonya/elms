@@ -16,8 +16,8 @@ Email should be sent automatically to admin
 
 ## Api Routes
 ### Auth
-* [ ] `POST /auth/signup` - create a user account
-* [ ] `POST /auth/login` - login user
+* [x] `POST /register` - create a user account
+* [x] `POST /login` - login user
 
 ### Leave Management
 * [x] `POST /leaves` - post a leave request
