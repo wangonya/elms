@@ -1,9 +1,12 @@
 from flask import Flask
-from flask_restful import Api, reqparse
+from flask_restful import Api
+from flask_jwt_extended import JWTManager
 
 from source.resources.leaves import RequestLeave, GetAllUserLeaves, \
     WithdrawLeave, CancelLeave, RespondToRequests
+from source.resources.user import UserRegister, UserLogin
 from source.db import db
+
 
 app = Flask(__name__)
 api = Api(app)
@@ -12,6 +15,8 @@ app.config['PROPAGATE_EXCEPTIONS'] = True  # To allow flask propagating exceptio
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 app.testing = True
+app.config['JWT_SECRET_KEY'] = 'elms-project'
+jwt = JWTManager(app)
 
 
 @app.route('/')
@@ -30,6 +35,9 @@ api.add_resource(RespondToRequests, '/leaves/<int:l_id>')
 api.add_resource(GetAllUserLeaves, '/leaves/<string:uid>')
 api.add_resource(WithdrawLeave, '/leaves/<int:l_id>/withdraw')
 api.add_resource(CancelLeave, '/leaves/<int:l_id>/cancel')
+api.add_resource(UserRegister, '/register')
+api.add_resource(UserLogin, '/login')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

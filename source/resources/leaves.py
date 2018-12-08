@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
 from source.models.leaves import LeaveModel
+from flask_jwt_extended import jwt_required
 
 
 class RequestLeave(Resource):
@@ -33,6 +34,7 @@ class RequestLeave(Resource):
                         help="This field cannot be left blank!"
                         )
 
+    @jwt_required
     def post(self):
         data = RequestLeave.parser.parse_args()
         leave = LeaveModel(**data)
@@ -48,6 +50,7 @@ class RequestLeave(Resource):
 
         return leave.json(), 201
 
+    @jwt_required
     def get(self):
         return {'leaves': list(map(lambda x: x.json(), LeaveModel.query.all()))}, 200
 
@@ -59,6 +62,7 @@ class RespondToRequests(Resource):
                         required=True,
                         help="This field cannot be left blank!")
 
+    @jwt_required
     def patch(self, l_id):
         data = RespondToRequests.parser.parse_args()
         leave = LeaveModel.find_by_l_id(l_id)
@@ -78,6 +82,7 @@ class GetAllUserLeaves(Resource):
                         required=True,
                         help="This field cannot be left blank!")
 
+    @jwt_required
     def get(self, uid):
         leave = LeaveModel.find_by_uid_all(uid)
 
@@ -94,6 +99,7 @@ class WithdrawLeave(Resource):
                         required=True,
                         help="This field cannot be left blank!")
 
+    @jwt_required
     def patch(self, l_id):
         data = WithdrawLeave.parser.parse_args()
         leave = LeaveModel.find_by_l_id(l_id)
@@ -114,6 +120,7 @@ class CancelLeave(Resource):
                         required=True,
                         help="This field cannot be left blank!")
 
+    @jwt_required
     def patch(self, l_id):
         leave = LeaveModel.find_by_l_id(l_id)
         data = CancelLeave.parser.parse_args()
