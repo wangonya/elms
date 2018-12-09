@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 
 from source.resources.leaves import RequestLeave, GetAllUserLeaves, \
     WithdrawLeave, CancelLeave, RespondToRequests
@@ -17,6 +18,7 @@ db.init_app(app)
 app.testing = True
 app.config['JWT_SECRET_KEY'] = 'elms-project'
 jwt = JWTManager(app)
+CORS(app)
 
 
 @app.route('/')
