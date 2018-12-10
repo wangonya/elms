@@ -8,10 +8,12 @@ class UserModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     uid = db.Column(db.String(15))
     password = db.Column(db.String(20))
+    is_admin = db.Column(db.BOOLEAN)
 
-    def __init__(self, uid, password):
+    def __init__(self, uid, password, is_admin):
         self.uid = uid
         self.password = password
+        self.is_admin = is_admin
 
     def save_to_db(self):
         db.session.add(self)
@@ -22,8 +24,8 @@ class UserModel(db.Model):
         return cls.query.filter_by(uid=uid).first()
 
     @classmethod
-    def find_by_id(cls, _id):
-        return cls.query.filter_by(id=_id).first()
+    def find_by_admin(cls, uid):
+        return cls.query.filter_by(uid=uid, is_admin=1).first()
 
     @staticmethod
     def generate_hash(password):
