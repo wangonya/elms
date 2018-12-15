@@ -62,4 +62,4 @@ class UserLogin(Resource):
                            'is_admin': is_admin
                        }, 200
             else:
-                return {'message': "Wrong password"}, 401
+                return {'status': 401, 'message': "Wrong password"}, 401
