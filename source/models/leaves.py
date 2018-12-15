@@ -23,11 +23,11 @@ class LeaveModel(db.Model):
 
     def json(self):
         return {'uid': self.uid,
-                'l_type': self.l_type,
-                'l_from': self.l_from,
-                'l_to': self.l_to,
-                'l_details': self.l_details,
-                'l_status': self.l_status}
+                'leave type': self.l_type,
+                'start date': self.l_from,
+                'end date': self.l_to,
+                'details': self.l_details,
+                'status': self.l_status}
 
     @classmethod
     def find_by_uid(cls, uid):
