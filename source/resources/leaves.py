@@ -48,7 +48,7 @@ class RequestLeave(Resource):
         except:
             return {"message": "An error occurred while inserting the data."}, 500
 
-        return leave.json(), 201
+        return {"message": "Leave application successful"}, 201
 
     @jwt_required
     def get(self):
