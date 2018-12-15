@@ -52,7 +52,7 @@ class RequestLeave(Resource):
 
     @jwt_required
     def get(self):
-        return {'leaves': list(map(lambda x: x.json(), LeaveModel.query.all()))}, 200
+        return list(map(lambda x: x.json(), LeaveModel.query.all())), 200
 
 
 class RespondToRequests(Resource):
@@ -87,7 +87,7 @@ class GetAllUserLeaves(Resource):
         leave = LeaveModel.find_by_uid_all(uid)
 
         if leave:
-            return {'leaves': list(map(lambda x: x.json(), leave))}, 200
+            return list(map(lambda x: x.json(), leave)), 200
         else:
             return {'message': 'An error occurred while fetching the data.'}, 500
 

@@ -58,6 +58,7 @@ class UserLogin(Resource):
                 return {
                            'status': 200,
                            'token': access_token,
+                           'uid': data['uid'],
                            'is_admin': is_admin
                        }, 200
             else:
