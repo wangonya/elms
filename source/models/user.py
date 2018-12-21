@@ -25,7 +25,7 @@ class UserModel(db.Model):
 
     @classmethod
     def find_by_admin(cls, uid):
-        return cls.query.filter_by(uid=uid, is_admin=1).first()
+        return cls.query.filter_by(uid=uid, is_admin=True).first()
 
     @staticmethod
     def generate_hash(password):
