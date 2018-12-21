@@ -7,7 +7,7 @@ class UserModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     uid = db.Column(db.String(15))
-    password = db.Column(db.String(20))
+    password = db.Column(db.String)
     is_admin = db.Column(db.BOOLEAN)
 
     def __init__(self, uid, password, is_admin):
