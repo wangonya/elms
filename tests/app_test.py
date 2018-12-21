@@ -1,7 +1,7 @@
 import pytest
 import json
 from flask_jwt_extended import create_access_token
-from source import app
+import app
 
 ctx = app.app.test_request_context()
 ctx.push()
