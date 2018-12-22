@@ -1,4 +1,5 @@
 from source.db import db
+from datetime import datetime
 
 
 class LeaveModel(db.Model):
@@ -22,8 +23,14 @@ class LeaveModel(db.Model):
         self.l_status = l_status
 
     def json(self):
+        date_format = "%Y-%m-%d"
+        a = datetime.strptime(self.l_from, date_format)
+        b = datetime.strptime(self.l_to, date_format)
+        delta = b - a
+        l_duration = delta.days
         return {'uid': self.uid,
                 'leave type': self.l_type,
+                'duration': '{} days'.format(l_duration),
                 'start date': self.l_from,
                 'end date': self.l_to,
                 'details': self.l_details,
