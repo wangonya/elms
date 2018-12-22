@@ -36,10 +36,10 @@ def test_index(client):
 
 def test_leave_post(client):
     test_data = {
-        "uid": "kevin",
-        "l_type": "test",
-        "l_from": "342",
-        "l_to": "876",
+        "uid": "test",
+        "l_type": "sick",
+        "l_from": "2018-12-05",
+        "l_to": "2018-12-28",
         "l_details": "test",
         "l_status": "pending approval"
     }
