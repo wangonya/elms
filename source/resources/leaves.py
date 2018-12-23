@@ -33,6 +33,10 @@ class RequestLeave(Resource):
                         required=True,
                         help="This field cannot be left blank!"
                         )
+    parser.add_argument('admin_remarks',
+                        type=str,
+                        required=False
+                        )
 
     @jwt_required
     def post(self):

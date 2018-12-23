@@ -12,15 +12,17 @@ class LeaveModel(db.Model):
     l_to = db.Column(db.String(10))
     l_details = db.Column(db.String(100))
     l_status = db.Column(db.String(20))
+    admin_remarks = db.Column(db.String)
 
     def __init__(self, uid, l_type, l_from,
-                 l_to, l_details, l_status):
+                 l_to, l_details, l_status, admin_remarks):
         self.uid = uid
         self.l_type = l_type
         self.l_from = l_from
         self.l_to = l_to
         self.l_details = l_details
         self.l_status = l_status
+        self.admin_remarks = admin_remarks
 
     def json(self):
         date_format = "%Y-%m-%d"
@@ -35,7 +37,8 @@ class LeaveModel(db.Model):
                 'start date': self.l_from,
                 'end date': self.l_to,
                 'details': self.l_details,
-                'status': self.l_status}
+                'status': self.l_status,
+                'admin_remarks': self.admin_remarks}
 
     @classmethod
     def find_by_uid(cls, uid):
