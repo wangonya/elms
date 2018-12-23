@@ -15,7 +15,6 @@ class LeaveModel(db.Model):
 
     def __init__(self, uid, l_type, l_from,
                  l_to, l_details, l_status):
-        self.id = id
         self.uid = uid
         self.l_type = l_type
         self.l_from = l_from
