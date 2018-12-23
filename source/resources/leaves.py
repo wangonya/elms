@@ -108,7 +108,7 @@ class WithdrawLeave(Resource):
         data = WithdrawLeave.parser.parse_args()
         leave = LeaveModel.find_by_l_id(l_id)
 
-        if leave.l_status == 'pending approval':
+        if leave.l_status == 'pending':
             leave.l_status = data['l_status']
             leave.save_to_db()
             return leave.json(), 200
@@ -129,7 +129,7 @@ class CancelLeave(Resource):
         leave = LeaveModel.find_by_l_id(l_id)
         data = CancelLeave.parser.parse_args()
 
-        if leave.l_status != 'pending approval':
+        if leave.l_status != 'pending':
             leave.l_status = data['l_status']
             leave.save_to_db()
             return leave.json(), 200
