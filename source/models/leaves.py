@@ -15,6 +15,7 @@ class LeaveModel(db.Model):
 
     def __init__(self, uid, l_type, l_from,
                  l_to, l_details, l_status):
+        self.id = id
         self.uid = uid
         self.l_type = l_type
         self.l_from = l_from
@@ -28,7 +29,8 @@ class LeaveModel(db.Model):
         b = datetime.strptime(self.l_to, date_format)
         delta = b - a
         l_duration = delta.days
-        return {'uid': self.uid,
+        return {'#': self.id,
+                'uid': self.uid,
                 'leave type': self.l_type,
                 'duration': '{} days'.format(l_duration),
                 'start date': self.l_from,
