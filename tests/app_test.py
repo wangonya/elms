@@ -41,7 +41,7 @@ def test_leave_post(client):
         "l_from": "2018-12-05",
         "l_to": "2018-12-28",
         "l_details": "test",
-        "l_status": "pending approval"
+        "l_status": "pending"
     }
     post_res = post_json(client, '/leaves', test_data)
     get_res = client.get('/leaves', headers=headers)

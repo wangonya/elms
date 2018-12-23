@@ -50,7 +50,7 @@ class LeaveModel(db.Model):
 
     @classmethod
     def find_by_status(cls, uid):
-        return cls.query.filter_by(uid=uid, l_status='pending approval').first()
+        return cls.query.filter_by(uid=uid, l_status='pending').first()
 
     @classmethod
     def find_by_l_id(cls, l_id):
