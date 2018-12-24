@@ -65,6 +65,10 @@ class RespondToRequests(Resource):
                         type=str,
                         required=True,
                         help="This field cannot be left blank!")
+    parser.add_argument('admin_remarks',
+                        type=str,
+                        required=True,
+                        help="This field cannot be left blank!")
 
     @jwt_required
     def patch(self, l_id):
@@ -73,6 +77,7 @@ class RespondToRequests(Resource):
 
         if leave:
             leave.l_status = data['l_status']
+            leave.admin_remarks = data['admin_remarks']
             leave.save_to_db()
             return leave.json(), 200
         else:
