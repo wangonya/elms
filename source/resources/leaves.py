@@ -97,19 +97,13 @@ class GetAllUserLeaves(Resource):
 
 
 class WithdrawLeave(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('l_status',
-                        type=str,
-                        required=True,
-                        help="This field cannot be left blank!")
 
     @jwt_required
     def patch(self, l_id):
-        data = WithdrawLeave.parser.parse_args()
         leave = LeaveModel.find_by_l_id(l_id)
 
         if leave.l_status == 'pending':
-            leave.l_status = data['l_status']
+            leave.l_status = 'withdrawn'
             leave.save_to_db()
             return leave.json(), 200
         else:
@@ -118,19 +112,13 @@ class WithdrawLeave(Resource):
 
 
 class CancelLeave(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('l_status',
-                        type=str,
-                        required=True,
-                        help="This field cannot be left blank!")
 
     @jwt_required
     def patch(self, l_id):
         leave = LeaveModel.find_by_l_id(l_id)
-        data = CancelLeave.parser.parse_args()
 
         if leave.l_status != 'pending':
-            leave.l_status = data['l_status']
+            leave.l_status = 'cancel requested'
             leave.save_to_db()
             return leave.json(), 200
         else:
